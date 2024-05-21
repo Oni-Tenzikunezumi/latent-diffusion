@@ -1,0 +1,12 @@
+
+.spyproject/config/workspace.ini
+/outputs/txt2img-samples
+/.spyproject
+*.json
+models/ldm/text2img-large/model.ckpt
+latent-diffusion.code-workspace
+/latent_diffusion.egg-info
+
+*.pyc
+/src
+*.pth
