@@ -1,6 +1,8 @@
 # CUDA_VISIBLE_DEVICES =<GPU_ID> python main.py --base configs/autoencoder/<config_spec>.yaml -t --gpus 0,
 # CUDA_VISIBLE_DEVICES =0 python main.py --base configs/autoencoder/celebahq-ldm-vq-4.yaml -t --gpus 0,
 
+
+# txt2img.pyを利用する．
 """
     get_num_classes
         => torchmetricsのバージョンが新しすぎる
@@ -28,15 +30,18 @@
     conda create -n 新しい環境名 --clone 複製したいベースの環境名
 """
 
-
+# main.py(学習用)を利用する．
 """
+    NameError: name 'trainer' is not defined
+    => その前にtry内でパスが読み込めていない.
     where <config_spec> is one of {
         celebahq-ldm-vq-4(f=4, VQ-reg. autoencoder, spatial size 64x64x3),
         ffhq-ldm-vq-4(f=4, VQ-reg. autoencoder, spatial size 64x64x3),
         lsun_bedrooms-ldm-vq-4(f=4, VQ-reg. autoencoder, spatial size 64x64x3),
         lsun_churches-ldm-vq-4(f=8, KL-reg. autoencoder, spatial size 32x32x4),
         cin-ldm-vq-8(f=8, VQ-reg. autoencoder, spatial size 32x32x4)}.
-"""
 
-aaaa = 1
-print(aaaa)
+    No module named 'academictorrents'
+    pip install
+
+"""

@@ -457,7 +457,9 @@ if __name__ == "__main__":
     #           params:
     #               key: value
 
+    print('Start main.')
     now = datetime.datetime.now().strftime("%Y-%m-%dT%H-%M-%S")
+
 
     # add cwd for convenience and to make classes in this file available when
     # running as `python main.py`
@@ -510,6 +512,7 @@ if __name__ == "__main__":
     seed_everything(opt.seed)
 
     try:
+        print('Start try.')
         # init and save configs
         configs = [OmegaConf.load(cfg) for cfg in opt.base]
         cli = OmegaConf.from_dotlist(unknown)
@@ -656,7 +659,9 @@ if __name__ == "__main__":
 
         trainer_kwargs["callbacks"] = [instantiate_from_config(callbacks_cfg[k]) for k in callbacks_cfg]
 
+        print('Create trainer!')
         trainer = Trainer.from_argparse_args(trainer_opt, **trainer_kwargs)
+        print('Create :' + str(trainer))
         trainer.logdir = logdir  ###
 
         # data
@@ -722,7 +727,8 @@ if __name__ == "__main__":
                 raise
         if not opt.no_test and not trainer.interrupted:
             trainer.test(model, data)
-    except Exception:
+    except Exception as e:
+        print(e)
         if opt.debug and trainer.global_rank == 0:
             try:
                 import pudb as debugger
