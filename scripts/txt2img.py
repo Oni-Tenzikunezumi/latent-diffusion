@@ -11,6 +11,7 @@ from ldm.util import instantiate_from_config
 from ldm.models.diffusion.ddim import DDIMSampler
 from ldm.models.diffusion.plms import PLMSSampler
 
+import time
 
 def load_model_from_config(config, ckpt, verbose=False):
     print(f"Loading model from {ckpt}")
@@ -108,6 +109,7 @@ if __name__ == "__main__":
     model = load_model_from_config(config, "models/ldm/text2img-large/model.ckpt")  # TODO: check path
 
     device = torch.device("cuda") if torch.cuda.is_available() else torch.device("cpu")
+    print('Device: ' + str(device))
     model = model.to(device)
 
     if opt.plms:
@@ -160,6 +162,8 @@ if __name__ == "__main__":
 
     # to image
     grid = 255. * rearrange(grid, 'c h w -> h w c').cpu().numpy()
+    prompt = prompt.replace('"', "'")
+    prompt = prompt + str(time.time())
     Image.fromarray(grid.astype(np.uint8)).save(os.path.join(outpath, f'{prompt.replace(" ", "-")}.png'))
 
     print(f"Your samples are ready and waiting four you here: \n{outpath} \nEnjoy.")
