@@ -42,6 +42,15 @@
         cin-ldm-vq-8(f=8, VQ-reg. autoencoder, spatial size 32x32x4)}.
 
     No module named 'academictorrents'
-    pip install
+    pip install academictorrents
+    ERROR: pip's dependency resolver does not currently take into account all the packages that are installed.
+    This behaviour is the source of the following dependency conflicts.
+    pytorch-lightning 1.4.2 requires future>=0.17.1, but you have future 0.16.0 which is incompatible.
 
+    FileNotFoundError: [Errno 2] No such file or directory: '/tmp/a306397ccf9c2ead27155983c254227c0fd938e2.torrent'
+    pip install future==0.17.1
+    academictorrents 2.3.3 requires future==0.16.0, but you have future 0.17.1 which is incompatible.
+
+    FileNotFoundError: [Errno 2] No such file or directory: '/tmp/a306397ccf9c2ead27155983c254227c0fd938e2.torrent'
+    pip install pytorch-lightning==1.3.1
 """
